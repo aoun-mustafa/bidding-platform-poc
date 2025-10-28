@@ -1,0 +1,159 @@
+<div class="dynamic-form-container fade-in">
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" class="dynamic-form">
+    <h2 class="form-title slide-up">Dynamic Form</h2>
+    
+    <div class="form-grid">
+      <div 
+        class="form-field scale-in" 
+        *ngFor="let field of sortedFields; let i = index"
+        [class.has-error]="isFieldInvalid(field.attribute_name)"
+        [class.is-valid]="isFieldValid(field.attribute_name)"
+        [style.animation-delay]="(i * 100) + 'ms'"
+      >
+        <label 
+          *ngIf="field.control_type !== 'checkbox'"
+          [for]="field.attribute_name" 
+          class="form-label"
+          [class.required]="field.is_required"
+        >
+          {{ field.display_label }}
+          <span *ngIf="field.is_required" class="required-asterisk">*</span>
+        </label>
+
+        <!-- Text Input -->
+        <input 
+          *ngIf="field.control_type === 'text'" 
+          type="text"
+          [id]="field.attribute_name"
+          [formControlName]="field.attribute_name"
+          [placeholder]="'Enter ' + field.display_label"
+          class="form-input"
+          [class.error]="isFieldInvalid(field.attribute_name)"
+          [class.valid]="isFieldValid(field.attribute_name)"
+        />
+
+        <!-- Email Input -->
+        <input 
+          *ngIf="field.control_type === 'email'" 
+          type="email"
+          [id]="field.attribute_name"
+          [formControlName]="field.attribute_name"
+          [placeholder]="'Enter ' + field.display_label"
+          class="form-input"
+          [class.error]="isFieldInvalid(field.attribute_name)"
+          [class.valid]="isFieldValid(field.attribute_name)"
+        />
+
+        <!-- Number Input -->
+        <input 
+          *ngIf="field.control_type === 'number'" 
+          type="number"
+          [id]="field.attribute_name"
+          [formControlName]="field.attribute_name"
+          [placeholder]="'Enter ' + field.display_label"
+          class="form-input"
+          [class.error]="isFieldInvalid(field.attribute_name)"
+          [class.valid]="isFieldValid(field.attribute_name)"
+        />
+
+        <!-- Tel Input -->
+        <input 
+          *ngIf="field.control_type === 'tel'" 
+          type="tel"
+          [id]="field.attribute_name"
+          [formControlName]="field.attribute_name"
+          [placeholder]="'Enter ' + field.display_label"
+          class="form-input"
+          [class.error]="isFieldInvalid(field.attribute_name)"
+          [class.valid]="isFieldValid(field.attribute_name)"
+        />
+
+        <!-- Date Input -->
+        <input 
+          *ngIf="field.control_type === 'date'" 
+          type="date"
+          [id]="field.attribute_name"
+          [formControlName]="field.attribute_name"
+          class="form-input"
+          [class.error]="isFieldInvalid(field.attribute_name)"
+          [class.valid]="isFieldValid(field.attribute_name)"
+        />
+
+        <!-- Select Dropdown -->
+        <select 
+          *ngIf="field.control_type === 'select'" 
+          [id]="field.attribute_name"
+          [formControlName]="field.attribute_name"
+          class="form-select"
+          [class.error]="isFieldInvalid(field.attribute_name)"
+          [class.valid]="isFieldValid(field.attribute_name)"
+        >
+          <option value="" disabled>Choose {{ field.display_label }}</option>
+          <option 
+            *ngFor="let option of field.options" 
+            [value]="option"
+          >
+            {{ option }}
+          </option>
+        </select>
+
+        <!-- Checkbox Input -->
+        <div 
+          *ngIf="field.control_type === 'checkbox'" 
+          class="checkbox-container"
+        >
+          <input 
+            type="checkbox"
+            [id]="field.attribute_name"
+            [formControlName]="field.attribute_name"
+            class="form-checkbox"
+            [class.error]="isFieldInvalid(field.attribute_name)"
+            [class.valid]="isFieldValid(field.attribute_name)"
+          />
+          <label 
+            [for]="field.attribute_name" 
+            class="checkbox-label"
+          >
+            {{ field.display_label }}
+            <span *ngIf="field.is_required" class="required-asterisk">*</span>
+          </label>
+        </div>
+
+        <!-- Error Message -->
+        <div 
+          *ngIf="getFieldError(field.attribute_name)" 
+          class="error-message"
+        >
+          {{ getFieldError(field.attribute_name) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="dynamicForm.invalid"
+      >
+        {{ submitButtonText }}
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="onReset()"
+      >
+        {{ resetButtonText }}
+      </button>
+    </div>
+
+    <!-- Form Debug (for development) -->
+    <div class="form-debug" *ngIf="false">
+      <h4>Form Debug Info:</h4>
+      <p><strong>Form Valid:</strong> {{ dynamicForm.valid }}</p>
+      <p><strong>Form Value:</strong></p>
+      <pre>{{ dynamicForm.value | json }}</pre>
+      <p><strong>Form Status:</strong> {{ dynamicForm.status }}</p>
+    </div>
+  </form>
+</div>

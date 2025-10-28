@@ -1,0 +1,350 @@
+.dynamic-form-container {
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.form-title {
+  margin-bottom: 2.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  
+  &.has-error {
+    .form-label {
+      color: #ff6b6b;
+    }
+  }
+  
+  &.is-valid {
+    .form-label {
+      color: #51cf66;
+    }
+  }
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+  
+  &.required {
+    font-weight: 700;
+  }
+}
+
+.required-asterisk {
+  color: #ff6b6b;
+  margin-left: 0.25rem;
+  font-weight: 700;
+}
+
+.form-input,
+.form-select {
+  padding: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  position: relative;
+  
+  &:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+  }
+  
+  &:hover:not(:focus) {
+    border-color: #ced4da;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  &.error {
+    border-color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.05);
+    
+    &:focus {
+      border-color: #ff6b6b;
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+    }
+  }
+  
+  &.valid {
+    border-color: #51cf66;
+    background: rgba(81, 207, 102, 0.05);
+    
+    &:focus {
+      border-color: #51cf66;
+      box-shadow: 0 0 0 4px rgba(81, 207, 102, 0.1);
+    }
+  }
+  
+  &:disabled {
+    background: rgba(233, 236, 239, 0.6);
+    color: #6c757d;
+    cursor: not-allowed;
+    border-color: #dee2e6;
+  }
+}
+
+.form-select {
+  cursor: pointer;
+  
+  &:invalid {
+    color: #7f8c8d;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #ced4da;
+  }
+}
+
+.form-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+  cursor: pointer;
+  transform: scale(1.1);
+  
+  &:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 3px;
+  }
+  
+  &.error {
+    accent-color: #ff6b6b;
+    outline-color: #ff6b6b;
+  }
+  
+  &.valid {
+    accent-color: #51cf66;
+    outline-color: #51cf66;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.checkbox-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #343a40;
+  }
+  
+  .required-asterisk {
+    color: #ff6b6b;
+    margin-left: 0.25rem;
+    font-weight: 700;
+  }
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #ff6b6b;
+  font-weight: 500;
+  
+  &::before {
+    content: "⚠️";
+    font-size: 1rem;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(102, 126, 234, 0.1);
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(45deg, #5a6fd8, #6a419a);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+  
+  &:active {
+    background: linear-gradient(45deg, #4e63c6, #5e3888);
+  }
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #868e96, #495057);
+  color: white;
+  box-shadow: 0 4px 15px rgba(134, 142, 150, 0.3);
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(45deg, #7a828a, #3d4246);
+    box-shadow: 0 8px 25px rgba(134, 142, 150, 0.4);
+  }
+  
+  &:active {
+    background: linear-gradient(45deg, #6e767e, #313539);
+  }
+}
+
+.form-debug {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  
+  h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #495057;
+  }
+  
+  pre {
+    background-color: #e9ecef;
+    padding: 0.5rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .dynamic-form-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// For tablets, maintain 2 columns but reduce gap
+@media (max-width: 1024px) and (min-width: 769px) {
+  .form-grid {
+    gap: 1.5rem;
+  }
+}
+
+// Loading state (for future use)
+.form-loading {
+  .form-input,
+  .form-select,
+  .btn {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
