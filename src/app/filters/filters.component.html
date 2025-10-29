@@ -1,0 +1,91 @@
+<div class="filters-container">
+  <div class="filters-header">
+    <h1>Dynamic Filters</h1>
+    <div class="config-switcher">
+      <button 
+        type="button"
+        [class.active]="currentConfig === 'vehicle'"
+        (click)="switchConfig('vehicle')">
+        Vehicle
+      </button>
+      <button 
+        type="button"
+        [class.active]="currentConfig === 'property'"
+        (click)="switchConfig('property')">
+        Property
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="filterForm" class="filters-form" (ngSubmit)="onApplyFilters()">
+    <div class="filters-grid">
+      @for (field of filterFields; track field.attribute_name) {
+        <div class="filter-field">
+          <!-- Text, Email, Tel Fields -->
+          @if (isTextField(field)) {
+            <label [for]="field.attribute_name">{{ field.display_label }}</label>
+            <input 
+              [type]="field.control_type"
+              [id]="field.attribute_name"
+              [formControlName]="field.attribute_name"
+              [placeholder]="'Filter by ' + field.display_label">
+          }
+
+          <!-- Number Fields (Range) -->
+          @if (isNumberField(field)) {
+            <label [for]="field.attribute_name">{{ field.display_label }}</label>
+            <input 
+              type="number"
+              [id]="field.attribute_name"
+              [formControlName]="field.attribute_name"
+              [placeholder]="'Filter by ' + field.display_label">
+          }
+
+          <!-- Select Fields -->
+          @if (isSelectField(field)) {
+            <label [for]="field.attribute_name">{{ field.display_label }}</label>
+            <select 
+              [id]="field.attribute_name"
+              [formControlName]="field.attribute_name">
+              <option value="">All</option>
+              @for (option of field.options; track option) {
+                <option [value]="option">{{ option }}</option>
+              }
+            </select>
+          }
+
+          <!-- Date Fields -->
+          @if (isDateField(field)) {
+            <label [for]="field.attribute_name">{{ field.display_label }}</label>
+            <input 
+              type="date"
+              [id]="field.attribute_name"
+              [formControlName]="field.attribute_name">
+          }
+
+          <!-- Checkbox Fields -->
+          @if (isCheckboxField(field)) {
+            <div class="checkbox-filter">
+              <label class="checkbox-label">
+                <input 
+                  type="checkbox"
+                  [id]="field.attribute_name"
+                  [formControlName]="field.attribute_name">
+                <span>{{ field.display_label }}</span>
+              </label>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="filter-actions">
+      <button type="button" class="btn-reset" (click)="onResetFilters()">
+        Reset Filters
+      </button>
+      <button type="submit" class="btn-apply">
+        Apply Filters
+      </button>
+    </div>
+  </form>
+</div>

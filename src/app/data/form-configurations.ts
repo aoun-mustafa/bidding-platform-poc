@@ -198,47 +198,83 @@ export const VEHICLE_FORM_CONFIG: FormField[] = [
 
 // Example of another form configuration for testing
 export const PROPERTY_FORM_CONFIG: FormField[] = [
-    {
-        "attribute_name": "property_type",
-        "display_label": "Property Type",
-        "control_type": "select",   
-        "options": [
-        "House",
-        "Apartment",
-        ],
-        "is_required": true,
-        "sort_order": 1
-    },
-    {
-        "attribute_name": "bedrooms",
-        "display_label": "Number of Bedrooms",
-        "control_type": "number",
-        "options": null,
-        "is_required": true,
-        "sort_order": 2
-    },  
-    {
-        "attribute_name": "bathrooms",
-        "display_label": "Number of Bathrooms",
-        "control_type": "number",
-        "options": null,
-        "is_required": true,
-        "sort_order": 3
-    },
-    {
-        "attribute_name": "location",
-        "display_label": "Location",
-        "control_type": "text",
-        "options": null,
-        "is_required": true,
-        "sort_order": 4
-    },
-    {
-        "attribute_name": "size_sqft",
-        "display_label": "Size (in sqft)",
-        "control_type": "number",
-        "options": null,
-        "is_required": true,
-        "sort_order": 5
-    }
-];
+  {
+    "attribute_name": "property_type",
+    "display_label": "Property Type",
+    "control_type": "select",
+    "options": [
+      "Apartment",
+      "Villa",
+      "Townhouse",
+      "Land",
+      "Office",
+      "Shop"
+    ],
+    "is_required": true,
+    "sort_order": 1
+  },
+  {
+    "attribute_name": "location_district",
+    "display_label": "District / Neighbourhood",
+    "control_type": "text",
+    "options": null,
+    "is_required": true,
+    "sort_order": 3
+  },
+  {
+    "attribute_name": "land_area_sqm",
+    "display_label": "Land Area (in square metres)",
+    "control_type": "number",
+    "options": null,
+    "is_required": false,
+    "sort_order": 7
+  },
+  {
+    "attribute_name": "area_sqm",
+    "display_label": "Area (in square metres)",
+    "control_type": "number",
+    "options": null,
+    "is_required": false,
+    "sort_order": 6
+  },
+  {
+    "attribute_name": "is_furnished",
+    "display_label": "Furnished?",
+    "control_type": "checkbox",
+    "options": null,
+    "is_required": false,
+    "sort_order": 8
+  },
+  {
+    "attribute_name": "bathrooms",
+    "display_label": "Bathrooms",
+    "control_type": "number",
+    "options": null,
+    "is_required": false,
+    "sort_order": 5
+  },
+  {
+    "attribute_name": "location_city",
+    "display_label": "City",
+    "control_type": "text",
+    "options": null,
+    "is_required": true,
+    "sort_order": 2
+  },
+  {
+    "attribute_name": "deed_number",
+    "display_label": "Title Deed (Sak) Number",
+    "control_type": "text",
+    "options": null,
+    "is_required": false,
+    "sort_order": 9
+  },
+  {
+    "attribute_name": "bedrooms",
+    "display_label": "Bedrooms",
+    "control_type": "number",
+    "options": null,
+    "is_required": false,
+    "sort_order": 4
+  }
+]

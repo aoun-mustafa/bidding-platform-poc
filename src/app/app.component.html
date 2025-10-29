@@ -1,45 +1,4 @@
 <main class="main">
-  <div class="app-container">
-    <header class="app-header">
-      <h1>Dynamic Form Demo</h1>
-      <p>This form renders dynamically based on JSON configuration</p>
-    </header>
-
-    <div class="form-selector">
-      <h3>Choose Form Configuration:</h3>
-      <div class="selector-buttons">
-        <button 
-          class="selector-btn"
-          [class.active]="currentFormConfig === formConfigurations.vehicle"
-          (click)="switchFormConfig('vehicle')"
-        >
-          Vehicle Form
-        </button>
-        <button 
-          class="selector-btn"
-          [class.active]="currentFormConfig === formConfigurations.property"
-          (click)="switchFormConfig('property')"
-        >
-          Property Form
-        </button>
-      </div>
-    </div>
-
-    <app-dynamic-form
-      [formConfig]="currentFormConfig"
-      [submitButtonText]="'Submit Form'"
-      [resetButtonText]="'Clear Form'"
-      (formSubmit)="onFormSubmit($event)"
-      (formReset)="onFormReset()"
-    ></app-dynamic-form>
-
-    <!-- Submission Modal -->
-    <app-submission-modal
-      [isVisible]="isModalVisible"
-      [submissionData]="submissionResult"
-      (closeModal)="onModalClose()"
-    ></app-submission-modal>
-  </div>
+  <router-outlet />
 </main>
 
-<router-outlet />

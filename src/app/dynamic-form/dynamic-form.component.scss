@@ -1,23 +1,17 @@
 .dynamic-form-container {
   margin: 0 auto;
   padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
+  background: var(--background-white);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
 }
 
 .form-title {
   margin-bottom: 2.5rem;
   font-size: 1.8rem;
   font-weight: 700;
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary-color);
   text-align: center;
 }
 
@@ -48,7 +42,7 @@
 
 .form-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--text-dark);
   font-size: 0.9rem;
   margin-bottom: 0.25rem;
   transition: color 0.3s ease;
@@ -59,7 +53,7 @@
 }
 
 .required-asterisk {
-  color: #ff6b6b;
+  color: var(--error-color);
   margin-left: 0.25rem;
   font-weight: 700;
 }
@@ -67,52 +61,52 @@
 .form-input,
 .form-select {
   padding: 1rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: var(--surface-light);
+  color: var(--text-dark);
   position: relative;
   
   &:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
+    background: var(--background-white);
     transform: translateY(-1px);
   }
   
   &:hover:not(:focus) {
-    border-color: #ced4da;
-    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--accent-color);
+    background: var(--background-white);
   }
   
   &.error {
-    border-color: #ff6b6b;
-    background: rgba(255, 107, 107, 0.05);
+    border-color: var(--error-color);
+    background: rgba(220, 38, 38, 0.05);
     
     &:focus {
-      border-color: #ff6b6b;
-      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+      border-color: var(--error-color);
+      box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
     }
   }
   
   &.valid {
-    border-color: #51cf66;
-    background: rgba(81, 207, 102, 0.05);
+    border-color: var(--success-color);
+    background: rgba(5, 150, 105, 0.05);
     
     &:focus {
-      border-color: #51cf66;
-      box-shadow: 0 0 0 4px rgba(81, 207, 102, 0.1);
+      border-color: var(--success-color);
+      box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
     }
   }
   
   &:disabled {
-    background: rgba(233, 236, 239, 0.6);
-    color: #6c757d;
+    background: rgba(229, 231, 235, 0.6);
+    color: rgba(31, 41, 55, 0.5);
     cursor: not-allowed;
-    border-color: #dee2e6;
+    border-color: var(--border-color);
   }
 }
 
@@ -129,37 +123,37 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--surface-light);
   border-radius: 12px;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border-color);
   transition: all 0.3s ease;
   
   &:hover {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: #ced4da;
+    background: var(--background-white);
+    border-color: var(--accent-color);
   }
 }
 
 .form-checkbox {
   width: 20px;
   height: 20px;
-  accent-color: #667eea;
+  accent-color: var(--primary-color);
   cursor: pointer;
   transform: scale(1.1);
   
   &:focus {
-    outline: 2px solid #667eea;
+    outline: 2px solid var(--accent-color);
     outline-offset: 3px;
   }
   
   &.error {
-    accent-color: #ff6b6b;
-    outline-color: #ff6b6b;
+    accent-color: var(--error-color);
+    outline-color: var(--error-color);
   }
   
   &.valid {
-    accent-color: #51cf66;
-    outline-color: #51cf66;
+    accent-color: var(--success-color);
+    outline-color: var(--success-color);
   }
   
   &:disabled {
@@ -170,34 +164,34 @@
 
 .checkbox-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--text-dark);
   font-size: 0.95rem;
   cursor: pointer;
   user-select: none;
   transition: color 0.3s ease;
   
   &:hover {
-    color: #343a40;
+    color: var(--primary-color);
   }
   
   .required-asterisk {
-    color: #ff6b6b;
+    color: var(--error-color);
     margin-left: 0.25rem;
     font-weight: 700;
   }
 }
 
 .error-message {
-  color: #ff6b6b;
+  color: var(--error-color);
   font-size: 0.8rem;
   margin-top: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(255, 107, 107, 0.1);
+  background: rgba(220, 38, 38, 0.1);
   border-radius: 8px;
-  border-left: 3px solid #ff6b6b;
+  border-left: 3px solid var(--error-color);
   font-weight: 500;
   
   &::before {
@@ -212,7 +206,7 @@
   justify-content: center;
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 2px solid rgba(102, 126, 234, 0.1);
+  border-top: 2px solid var(--border-color);
 }
 
 .btn {
@@ -240,7 +234,7 @@
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
   }
   
   &:disabled {
@@ -259,28 +253,31 @@
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  background: var(--primary-color);
+  color: var(--text-on-dark);
+  box-shadow: var(--shadow-md);
   
   &:hover:not(:disabled) {
-    background: linear-gradient(45deg, #5a6fd8, #6a419a);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: var(--accent-color);
+    box-shadow: var(--shadow-lg);
   }
   
   &:active {
-    background: linear-gradient(45deg, #4e63c6, #5e3888);
+    background: var(--primary-color);
+    transform: translateY(0);
   }
 }
 
 .btn-secondary {
-  background: linear-gradient(45deg, #868e96, #495057);
-  color: white;
-  box-shadow: 0 4px 15px rgba(134, 142, 150, 0.3);
+  background: var(--surface-light);
+  color: var(--text-dark);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
   
   &:hover:not(:disabled) {
-    background: linear-gradient(45deg, #7a828a, #3d4246);
-    box-shadow: 0 8px 25px rgba(134, 142, 150, 0.4);
+    background: var(--background-white);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
   }
   
   &:active {
