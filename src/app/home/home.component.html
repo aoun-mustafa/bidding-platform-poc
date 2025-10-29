@@ -27,6 +27,24 @@
       >
         Property Form
       </button>
+      <button 
+        class="selector-btn custom-config-btn"
+        [class.active]="currentFormConfig === formConfigurations.custom && hasCustomConfig"
+        (click)="switchFormConfig('custom')"
+      >
+        <span class="btn-icon">➕</span>
+        {{ hasCustomConfig ? 'Custom Config' : 'Add JSON Config' }}
+      </button>
+      @if (hasCustomConfig) {
+        <button 
+          class="selector-btn clear-config-btn"
+          (click)="clearCustomConfig()"
+          title="Clear custom config and add new"
+        >
+          <span class="btn-icon">🗑️</span>
+          Clear & Add New
+        </button>
+      }
     </div>
   </div>
 
@@ -44,4 +62,11 @@
     [submissionData]="submissionResult"
     (closeModal)="onModalClose()"
   ></app-submission-modal>
+
+  <!-- JSON Config Modal -->
+  <app-json-config-modal
+    [isVisible]="isJsonConfigModalVisible"
+    (closeModal)="closeJsonConfigModal()"
+    (configSubmit)="onCustomConfigSubmit($event)"
+  ></app-json-config-modal>
 </div>

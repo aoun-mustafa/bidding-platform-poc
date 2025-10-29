@@ -93,6 +93,10 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
 
       &:hover {
         background: var(--background-white);
@@ -106,6 +110,38 @@
         border-color: var(--primary-color);
         color: var(--text-on-dark);
         box-shadow: var(--shadow-md);
+      }
+
+      &.custom-config-btn {
+        border-style: dashed;
+        
+        .btn-icon {
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          border-style: solid;
+        }
+
+        &.active {
+          border-style: solid;
+        }
+      }
+
+      &.clear-config-btn {
+        border-color: var(--error-color);
+        color: var(--error-color);
+        
+        .btn-icon {
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          background: rgba(220, 38, 38, 0.1);
+          border-color: var(--error-color);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+        }
       }
     }
   }

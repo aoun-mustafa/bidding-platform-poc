@@ -142,17 +142,6 @@ if (field.control_type === 'number' && field.attribute_name === 'year') {
 
 ## Styling
 
-The component uses SCSS with CSS custom properties for easy theming:
-
-```scss
-.dynamic-form-container {
-  --primary-color: #3498db;
-  --error-color: #e74c3c;
-  --success-color: #27ae60;
-  --border-radius: 4px;
-}
-```
-
 ## Component Inputs
 
 | Input | Type | Default | Description |

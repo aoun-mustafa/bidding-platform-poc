@@ -1,0 +1,54 @@
+<div class="modal-overlay" *ngIf="isVisible" (click)="onBackdropClick($event)" (keydown.escape)="close()">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Add Custom JSON Configuration</h2>
+      <button class="close-button" (click)="close()" aria-label="Close modal">
+        <span>&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="instruction-text">
+        <p>Paste your form configuration JSON below. The configuration should be an array of field objects.</p>
+        <button class="load-example-btn" (click)="loadExample()">
+          📝 Load Example
+        </button>
+      </div>
+
+      <div class="json-input-container">
+        <textarea
+          [(ngModel)]="jsonInput"
+          class="json-textarea"
+          placeholder="Paste your JSON configuration here..."
+          rows="20"
+        ></textarea>
+      </div>
+
+      <div class="error-message" *ngIf="showError">
+        <span class="error-icon">⚠️</span>
+        <span class="error-text">{{ errorMessage }}</span>
+      </div>
+
+      <div class="field-requirements">
+        <h4>Required Field Structure:</h4>
+        <ul>
+          <li><strong>attribute_name</strong>: Unique field identifier (string)</li>
+          <li><strong>display_label</strong>: Label shown to user (string)</li>
+          <li><strong>control_type</strong>: Input type (text, number, select, email, tel, date, checkbox)</li>
+          <li><strong>options</strong>: Array of options for select fields, or null</li>
+          <li><strong>is_required</strong>: Whether field is required (boolean)</li>
+          <li><strong>sort_order</strong>: Display order (number)</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="close()">
+        Cancel
+      </button>
+      <button class="btn btn-primary" (click)="onSubmit()">
+        Apply Configuration
+      </button>
+    </div>
+  </div>
+</div>

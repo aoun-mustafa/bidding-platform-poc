@@ -1,24 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { FormField, VEHICLE_FORM_CONFIG, PROPERTY_FORM_CONFIG } from '../data/form-configurations';
+import { JsonConfigModalComponent } from '../components/json-config-modal/json-config-modal.component';
 
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, JsonConfigModalComponent],
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
   filterForm!: FormGroup;
   filterFields: FormField[] = [];
-  currentConfig: 'vehicle' | 'property' = 'vehicle';
+  currentConfig: 'vehicle' | 'property' | 'custom' = 'vehicle';
   
   formConfigurations = {
     vehicle: VEHICLE_FORM_CONFIG,
-    property: PROPERTY_FORM_CONFIG
+    property: PROPERTY_FORM_CONFIG,
+    custom: [] as FormField[]
   };
+
+  // JSON Config Modal
+  isJsonConfigModalVisible = false;
+  hasCustomConfig = false;
 
   constructor(private readonly fb: FormBuilder) {}
 
@@ -26,7 +33,11 @@ export class FiltersComponent implements OnInit {
     this.switchConfig('vehicle');
   }
 
-  switchConfig(configType: 'vehicle' | 'property') {
+  switchConfig(configType: 'vehicle' | 'property' | 'custom') {
+    if (configType === 'custom' && !this.hasCustomConfig) {
+      this.openJsonConfigModal();
+      return;
+    }
     this.currentConfig = configType;
     this.filterFields = this.getSortedFields(this.formConfigurations[configType]);
     this.buildFilterForm();
@@ -97,5 +108,32 @@ export class FiltersComponent implements OnInit {
 
   isDateField(field: FormField): boolean {
     return field.control_type === 'date';
+  }
+
+  openJsonConfigModal() {
+    this.isJsonConfigModalVisible = true;
+  }
+
+  closeJsonConfigModal() {
+    this.isJsonConfigModalVisible = false;
+  }
+
+  onCustomConfigSubmit(config: FormField[]) {
+    console.log('Custom filter configuration received:', config);
+    this.formConfigurations.custom = config;
+    this.hasCustomConfig = true;
+    this.currentConfig = 'custom';
+    this.filterFields = this.getSortedFields(config);
+    this.buildFilterForm();
+    this.closeJsonConfigModal();
+  }
+
+  clearCustomConfig() {
+    this.formConfigurations.custom = [];
+    this.hasCustomConfig = false;
+    // Switch to vehicle filters as default after clearing
+    this.switchConfig('vehicle');
+    // Open modal to add new config
+    this.openJsonConfigModal();
   }
 }
